@@ -16,10 +16,10 @@ public class ApaceLog {
             if (visited[i]){
                 continue;
             }
-            count =1;
+            count =0;
             for(int j=0;j< log.length;j++ )  {
 
-                if(ip[i].equals(ip[j]) && i !=j){
+                if(ip[i].equals(ip[j])){
 
                     count = count +1;
                     visited[j] = true;
