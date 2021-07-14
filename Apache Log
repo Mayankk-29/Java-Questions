@@ -20,24 +20,17 @@ public class ApaceLog {
             for(int j=0;j< log.length;j++ )  {
 
                 if(ip[i].equals(ip[j])){
-
                     count = count +1;
                     visited[j] = true;
-
                 }
             } if(k < count) {
                 k=count;
                 result =ip[i];
-
+                
             }else if(k == count) {
-
-                result = result + "," + result;
-
+                result = result + "," + ip[i];
             }
-
-
         }
-
         System.out.println(result);
         return  result;
 
@@ -59,7 +52,7 @@ public class ApaceLog {
                         "10.0.0.2-nancy[10/Dec/2000:12:34:59-0500]\"GET /c.gif HTTp/1.0\"100 134",
                         "10.0.0.3-logan[10/Dec/2000:12:34:59-0500]\"GET /d.gif HTTp/1.0\"100 134"};
         result = findTopIpAddress(lines);
-        if(!result.equals("10.0.0.2"))
+        if(!result.equals("10.0.0.1,10.0.0.2"))
         {
             testPassed=false;
         }
