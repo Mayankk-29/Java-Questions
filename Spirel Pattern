@@ -1,0 +1,63 @@
+public class Mockk {
+    public static void main(String[] Args){
+        int[][] arr = new int[10][10];int i =0,j=0,m=10,n=10,o=-1,p=0;int count=1;
+        String move = "r";int k=1;
+        while(k<101) {
+            if(move.equals("r") && j<m){
+              while(j<m){
+               arr[i][j] = k;
+               k=k+1;
+               j++;
+           }  i=i+1;
+              j=j-1;
+              m=m-1;
+              move="d";
+              count = count +1;
+          }
+            if(move.equals("d")){
+                while(i<n){
+               arr[i][j] = k;
+                    k=k+1;
+               i++;
+           }   j=j-1;
+                i=i-1;
+                n=n-1;
+                move="l";
+                count = count +1;
+            }
+            if(move.equals("l")){
+                while(j>o){
+                arr[i][j] = k;
+                    k=k+1;
+                j--;
+            }   o=o+1;
+                i= i-1;
+                j=j+1;
+                move="u";
+                count = count +1;
+            }
+            if(move.equals("u")){
+                while(i>p){
+                arr[i][j] = k;
+                    k=k+1;
+                i--;
+            }  j=j+1;
+                i=i+1;
+                p=p+1;
+                move="r";
+                count = count +1;
+            }
+        }
+        boolean result =true;
+        result &= arr[5][5]==99;
+        result &= arr[7][8]==50;
+        result &= arr[9][9]==19;
+        result &= arr[3][5]==87;
+        if(result){
+            System.out.println("All Test Case Passed");
+        }else {
+            System.out.println("Test case failed");
+        }
+
+    }
+}
