@@ -1,0 +1,52 @@
+public class Mockk
+{
+    //function that finds reverse of the given number
+   public static int reverse(int x)
+    {
+
+        String str = Integer.toString(x);
+        String string="";
+        for(int i=str.length()-1;i>=0;i--)
+        {
+            string=string+str.charAt(i);
+        }
+        int rev=Integer.parseInt(string);
+
+        return rev;
+    }
+
+    static boolean isMysteryNo(int num)
+    {
+        for (int i=1; i <= num/2; i++)
+        {
+            int j = reverse(i);
+            if (i + j == num && i != j)
+            {
+                System.out.println( i + " " + j);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String args[])
+    {
+        boolean result = true;
+
+        result &= !isMysteryNo(231);
+        result &= isMysteryNo(132);
+        result &= isMysteryNo(176);
+        result &= isMysteryNo(154);
+        result &= !isMysteryNo(76);
+
+        if(result){
+            System.out.println("All Test Cases Passed");
+        }else{
+
+            System.out.println("Test Case Failed");
+
+        }
+
+
+    }
+} 
