@@ -1,5 +1,5 @@
 import java.util.*;
-public class MaxDistance
+public class Stack
 {
 
    public static void stack_push(Stack<Integer> stack)
