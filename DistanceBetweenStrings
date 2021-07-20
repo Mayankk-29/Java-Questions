@@ -16,7 +16,7 @@ public class DistanceBetStr {
 
         count = index2 - index1;
         for(int i=index1+1; i<index2;i++ ) {
-             strArray[i];
+             Char ch = strArray[i].toCharArray();
             count = count + strArray[i].length;
         }
         char[] arr1 = strArray[index1].toCharArray();
