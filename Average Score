@@ -1,0 +1,71 @@
+import java.util.Arrays;
+
+public class AVG {
+        public static boolean doTestPass() {
+            boolean result = true;
+
+           result = result && testCases.put(new String[][]{{"Bobby", "87"},
+                    {"Charles", "100"}, {"Eric", "64"},
+                    {"Charles", "22"}}, 87);
+
+            result = result && testCases.put(new String[][]{}, 0);
+            result = result && testCases.put(new String[][]{{"Sarah", "91"}, {"Goldie", "92"},
+                    {"Elaine", "93"}, {"Goldie", "94"}, {"Sarah", "93"}}, 92);
+
+            result = result && testCases.put(new String[][]{{"Alpha", "99"}, {"Bravo", "99"},
+                    {"Delta", "99"}, {"Echo", "99"}, {"Fortrot", "99"},
+                    {"Fortrot", "99"}}, 99);
+            if(result){
+                System.out.println("All Test Case Passed");
+            }else{
+                System.out.println("Test Case Failed");
+            }return result;
+        }
+    public static void main(String[] Args){
+        doTestPass();
+    }
+}
+class testCases {
+    public static boolean put(String[][] a, int b) {
+        int rows = a.length;int count=0;int result,sum=0,res=Integer.MAX_VALUE,fin=0;boolean ans1 = false;
+        if(rows == 0 ){ ans1 = true;return ans1;}
+        int[] arr = new int[rows];
+        boolean[] visited = new boolean[rows];
+        Arrays.fill(visited, false);
+        for (int i = 0; i < rows; i++) {
+            if( visited[i]){
+                continue;
+            }
+            for (int j = 0; j < rows; j++) {
+                String str1 = a[i][0];
+                String str2 = a[j][0];
+                if (str1.equals(str2) && i != j) {
+                    arr[i] = Math.max(Integer.parseInt(a[i][1]), Integer.parseInt(a[j][1]));
+                    visited[j] = true;
+                }else{
+                    arr[i] = Integer.parseInt(a[i][1]);
+                }
+            }
+        }
+        Arrays.sort(arr);
+        for (int i = 0; i < rows; i++) {
+            sum = sum + arr[i];
+            if(arr[i] !=0){
+                count = count +1;
+            }
+        }
+        result = sum/count;
+        for (int i = 0; i < rows; i++) {
+            int ans = result-arr[i];
+            if(res > Math.abs(ans) ){
+                res = ans;
+                fin = arr[i];
+            }
+        }
+        if(fin == b){
+            ans1 =true;
+        }
+
+        return ans1;
+    }
+}
