@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Solution {
-    static ArrayList<Integer> c = new ArrayList<>();
     static int count = 0;
     public static void calculate(ArrayList<Integer> a,int sum,ArrayList<Boolean> b) {
         if(sum<0 ){
@@ -28,8 +27,6 @@ public class Solution {
             a.add(sc.nextInt());
             b.add(false);
         }
-        c = new ArrayList<>(a);
-
         calculate(a,0,b);
         System.out.println(count);
     }
