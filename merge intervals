@@ -1,0 +1,99 @@
+import java.sql.SQLOutput;
+import java.util.*;
+
+class Solution {
+    public static int[][] merge(int[][] intervals) {
+        int max = Integer.MIN_VALUE;
+        ArrayList<Integer> test = new ArrayList<>();
+        ArrayList<Integer> test1 = new ArrayList<>();
+        ArrayList<Integer> test3 = new ArrayList<>();
+        for (int i =0;i<intervals.length;i++) {
+            max = Math.max(max, intervals[i][1]);
+            test.add(intervals[i][0]);
+            test1.add(intervals[i][1]);
+            if(intervals[i][0]==intervals[i][1]) test3.add(intervals[i][0]);
+        }
+        int[][] arr = new int[intervals.length][max + 1];
+
+        for (int[] row: arr) Arrays.fill(row, -1);
+
+        for (int i = 0; i < intervals.length; i++) {
+            int a = intervals[i][0];
+            int b = intervals[i][1];
+            for (int j = a; j <= b; j++) {
+                arr[i][j] = j;
+            }
+        }
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();boolean start = false;int a = 0;int b =0;
+        ArrayList<ArrayList<Integer>> colm = new ArrayList<>();
+        for (int i = 0; i <= max; i++) {
+            ArrayList<Integer> times = new ArrayList<>();
+            for (int j = 0; j < intervals.length; j++) {
+                if (arr[j][i] != -1 && !start) {
+                    start = true;
+                    a = i;
+                }
+                if(arr[j][i] != -1) times.add(j);
+
+
+            } colm.add(times);
+
+            if(i!=0 && test.contains(i) && colm.get(i-1).size() != 0){
+                System.out.println("yes"+i);
+                boolean flag = false;
+                System.out.println(colm.get(i));
+                System.out.println(colm.get(i-1));
+                for(int k =0;k<colm.get(i).size();k++){
+                    if(colm.get(i-1).contains(colm.get(i).get(k))) flag = true;
+                }
+                System.out.println(flag);
+                if(!flag){
+                    b=i-1;
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(a);
+                    temp.add(b);
+                    ans.add(temp);
+                    a = i;
+                }
+            }
+              else  if((colm.get(i).size() == 0 && start)){
+                    b= i-1;
+                    start = false;
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(a);
+                    temp.add(b);
+                    ans.add(temp);
+                }
+              if(i == max ){
+                    b = i;
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(a);
+                    temp.add(b);
+                    ans.add(temp);
+                }
+        }
+        System.out.println(ans.size());
+        int[][] fin = new int[ans.size()][2];
+        for(int i =0;i< ans.size();i++){
+            fin[i][0] = ans.get(i).get(0);
+            fin[i][1] = ans.get(i).get(1);
+        }
+        return fin;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       int[][] arr = new int[n][2];
+        for(int i =0;i<n;i++){
+            arr[i][0] = sc.nextInt();
+            arr[i][1] = sc.nextInt();
+        }
+        int[][] ans = merge(arr);
+        for (int[] an : ans) {
+            System.out.println(an[0] + " " + an[1]);
+
+        }
+
+    }
+
+}
